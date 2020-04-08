@@ -13,7 +13,7 @@ Install mysql and create the database 'Quizz'.
     (enter your passphrase)
     CREATE DATABASE QUIZZ;
 Create user 'Admin', identified by 'Password'. You can also choose a username and a personalized password, but if so, you will also have to enter it in the application.properties file.
-    CREATE USER 'Admin'@'localhost' INDENTIFIED BY 'Password';
+    CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'Password';
 
 Rename --Data.sql to data.sql
 Place yourself in src/main/java/a84/squizer folder

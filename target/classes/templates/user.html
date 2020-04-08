@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Squizer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner split">
+        <section>
+            <h2>Espace membre</h2>
+            
+        </section>
+        <section>
+            <ul class="actions">
+                <li><a th:if="${role} == 2" href="manageusers" class="button special">Gestion des comptes</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="index" class="button special">Index</a></li>
+                <li><a href="logout" class="button special">Logout</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Admin membre -->
+<section id="contact" class="wrapper">
+    <div class="inner split">
+        <section style="display:inline-block ;">
+            <ul style="list-style: none;">
+                <li><h2>Suppression de compte</h2></li>
+                <li>
+                    <form action="deleteaccount" method="post" >
+                        <input type="hidden" name="userid" th:value="${userid}" >
+                        <span>Suppression du compte. Confirmer la suppression?</span>
+                        <select  name="type" style="margin-top:10px;">
+                            <option selected value="NON">NON</option>
+                            <option value="OUI">OUI</option>
+                        </select>
+                        <br>
+                        <input class="button special" type="submit" name="delete" style="margin-left:20px;" value="Supprimer votre compte">
+                    </form>
+                </li>
+                <br>
+                <li><h2>Modification mot de passe</h2></li>
+                <li>
+                    <form action="modpass" method="post" >
+                        <input type="hidden" name="pass" th:value="${userid}">
+                        <div>
+                            <label for="oldpass">Ancien mot de passe :</label>
+                            <input type="password" name="oldpassword">
+                        </div>
+                        <div>
+                            <label for="passn">Nouveau mot de passe :</label>
+                            <input type="password" name="passwordn">
+                        </div>
+                        <div>
+                            <label for="passc">Nouveau mot de passe (confirmer):</label>
+                            <input type="password" name="passwordc">
+                        </div>
+                        <br>
+                        <input class="button special" type="submit" name="modpass" style="margin-left:20px;" value="Changer de mot de passe">
+                    </form>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <ul style="list-style: none;">
+                <li th:each="res: ${quizresults}" style="display:flex">
+                    <a th:href="@{/index/quiz/{id}(id=${res.quizzes.quiz_id})}" th:text="${res.quizzes.title}"></a>
+                    <span th:text="'&nbsp; Score : ' + ${res.results.score} + '/' + ${res.results.maxscore}"></span>
+                    <form action="deleteresult" method="post" >
+                        <input type="hidden" name="resultid" th:value="${res.results.resultid}" >
+                        <input type="image" src="/images/croix.png" name="delete" alt="Delete" style="margin-left:20px;">
+                    </form>
+                </li>
+                <li>
+                    <p>Vous pouvez supprimer un résultat en cliquant sur la croix à côté.</p>
+                </li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Fer des quizzes. All rights (not) reserved. <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>. Design: <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

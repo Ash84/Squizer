@@ -12,11 +12,10 @@ Install mysql, and create the database 'Quizz'.
 Create user 'Admin', identified by 'Password'. You can also choose a username and a personalized password, but if so, you will also have to enter it in the application.properties file.
     CREATE USER 'Admin'@'localhost' INDENTIFIED BY 'Password';
 
-Rename --Schema.sql to schema.sql
 Rename --Data.sql to data.sql
 Place yourself in src/main/java/a84/squizer folder
     ./mvnw spring-boot:run
-
+You can rename data.sql to whatever then, so on reboot it will not erase your data.
 
 You can also change the port, in src/main/java/a84/squizer/Squizer.java, search for line 11 :
 		System.setProperty("server.port", "8085");

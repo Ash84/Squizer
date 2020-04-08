@@ -18,6 +18,8 @@ Create user 'Admin', identified by 'Password'. You can also choose a username an
 Rename --Data.sql to data.sql
 Place yourself in src/main/java/a84/squizer folder
     ./mvnw spring-boot:run
+It is possible that the execution rights are not granted to the ./ folder, to solve this problem you can enter the next line :
+    chmod +x ./mvnw
 You can rename data.sql to whatever then, so on reboot it will not erase your data.
 
 You can also change the port, in src/main/java/a84/squizer/Squizer.java, search for line 11 :

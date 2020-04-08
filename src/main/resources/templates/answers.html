@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Squizer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner split">
+        <section>
+            <h2>Espace d'administration</h2>
+            
+        </section>
+        <section>
+            <ul class="actions">
+                <li><a th:if="${role} == 2" href="manageusers" class="button special">Gestion des comptes</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="index" class="button special">Index</a></li>
+                <li><a href="logout" class="button special">Logout</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<section id="contact" class="wrapper">
+    <div class="inner split">
+        <section>
+            <h2 th:text="${questionname}"></h2>
+
+            <p>Entrer nom de la nouvelle réponse</p>
+            <p style="color:red; font-weight:700" th:if="${error_msg} != null" th:text="${error_msg}" ></p>
+
+            <form action="answer" class="alt" method="POST">
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        <input type="hidden" name="questionid" th:value="${questionid}">
+                        <input name="answer" placeholder="Intitulé de la réponse" type="text">
+                        <select name="verify" style="margin-top:10px;">
+                            <option selected disabled hidden>-- La réponse doit être --</option>
+                            <option value="1">Juste</option>
+                            <option value="0">Fausse</option>
+                        </select>
+                        <select name="value" style="margin-top:10px;">
+                            <option selected disabled hidden>-- Rapporte .. points --</option>
+                            <option value="0">0</option>
+                            <option value="0.25">1/4</option>
+                            <option value="0.5">1/2</option>
+                            <option value="0.75">3/4</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input class="alt" name="save" value="valider" type="submit"></li>
+                </ul>
+            </form>
+        </section>
+        <section>
+            <ul class="checklist-quiz">
+                <li th:each="ans: ${answers}">
+                    <p th:text="${ans.answer}+ ', pts:' + ${ans.value}"></a>
+                    <form action="deleteanswer" method="post" style="margin-left:10px;" >
+                        <input type="hidden" name="answerid" th:value="${ans.answerid}" >
+                        <input type="image" src="/images/croix.png" name="delete" alt="Delete" ></form>
+                </li>
+                <li><form action="questions" method="post">
+                    <input type="hidden" name="quizid" th:value="${quizid}" >
+                    <input class="alt" type="submit" value="Retour au quiz"></form>
+                </li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Untitled. All rights reserved. Images: <a href="http://unsplash.com">Unsplash</a>. Design: <a href="http://templated.co">TEMPLATED</a>.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

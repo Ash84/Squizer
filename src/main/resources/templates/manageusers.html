@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Squizer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner split">
+        <section>
+            <h2>Gestion des utilisateurs</h2>
+        </section>
+        <section>
+            <ul class="actions">
+                <li><a href="index" class="button special">Index</a></li>
+                <li th:if="${log} == null"><a href="index" class="button special">Index</a></li>
+                <li th:if="${log} != null" ><a href="logout" class="button special">Logout</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<section id="contact" class="wrapper">
+    <div class="inner split">
+        <ul class="checklist-quiz">
+            <li th:each="user: ${users}">
+                <p th:if="${user.role == 1}" th:text="${user.name} + ', rôle: modérateur'"></p>
+                <p th:if="${user.role == 0}" th:text="${user.name} + ', rôle: casual'"></p>
+                <p th:if="${user.role == 2}" th:text="${user.name} + ', rôle: administrateur'"></p>
+                <form action="manageusers" method="post" style="margin-left:10px;">
+                    <input type="hidden" name="givcasu" th:value="${user.userid}">
+                    <input type="image" src="/images/casu.png" name="givcasu" alt="Utilisateur standard" ></form>
+                <form action="manageusers" method="post" style="margin-left:10px;">
+                    <input type="hidden" name="givmod" th:value="${user.userid}">
+                    <input type="image" src="/images/modo.png" name="givmod" alt="Passer modérateur">
+                </form>
+                <form action="manageusers" method="post" style="margin-left:10px;">
+                    <input type="hidden" name="delete" th:value="${user.userid}">
+                    <input type="image" src="/images/croix.png" name="delete" alt="Delete" ></form>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Fer des quizzes. All rights (not) reserved. <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>. Design: <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

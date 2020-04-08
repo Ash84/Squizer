@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Squizer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner split">
+        <section>
+            <h2>Créez votre compte Squizer, pour avoir accès à tous les quizzes.</h2>
+        </section>
+        <section>
+            <p>Un site de quiz gratuit, qui ne demande pas de mail pour s'inscrire !</p>
+            <ul class="actions">
+                <li th:if="${log} == null"><a href="index" class="button special">Index</a></li>
+                <li th:if="${log} == null"><a href="login" class="button special">Login</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="wrapper">
+    <div class="inner split">
+        <section>
+            <h2>Enregistrez votre compte dès maintenant !</h2>
+            <p th:if="${error_msg} == null">Vous n'avez besoin que d'un pseudo et d'un mot de passe</p>
+            <p style="color:red; font-weight:700" th:if="${error_msg} != null" th:text="${error_msg}" ></p>
+            <form action="register" class="alt" method="POST">
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        <input name="name" placeholder="Name" type="text">
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input name="password" placeholder="Password" type="password">
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input name="passwordc" placeholder="Repeat Password" type="password">
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input class="alt" value="Register" type="submit"></li>
+                </ul>
+            </form>
+        </section>
+        <section>
+            <ul class="contact">
+                <li>Pour nous contacter...</li>
+                <li class="fa-facebook"><a href="https://www.facebook.com/isaac.tolkien.35">Par Facebook</a></li>
+                <li class="fa-envelope"><a href="mailto:kolthar.levilain@gmail.com">Par mail</a></li>
+                <li class="fa-home"><a href="http://www.hernan.fr">Crédit spécial</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Fer des quizzes. All rights (not) reserved. <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>. Design: <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

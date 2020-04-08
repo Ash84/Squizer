@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Squizer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner split">
+        <section>
+            <h2>Espace d'administration</h2>
+            
+        </section>
+        <section>
+            <ul class="actions">
+                <li><a th:if="${role} == 2" href="manageusers" class="button special">Gestion des comptes</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="index" class="button special">Index</a></li>
+                <li><a href="logout" class="button special">Logout</a></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<!-- Quiz -->
+<section id="contact" class="wrapper">
+    <div class="inner split">
+        <section>
+            <h2>Formulaire de création de quiz</h2>
+
+            <p th:if="${quiztoedit} == null">Entrez le nom de votre quiz</p>
+            <p th:if="${quiztoedit} != null" th:text="'Editing quiz : '+ ${quiztoedit}"></p>
+            <p style="color:red; font-weight:700" th:if="${error_msg} != null" th:text="${error_msg}" ></p>
+
+            <form th:if="${quiztoedit} == null" action="admin" class="alt" method="POST">
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        <input th:value="${namequiz}" name="namequiz" placeholder="Nom du Quiz" type="text">
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input class="alt" name="draft" value="enr. brouillon" type="submit" ></li>
+                    <li><input class="alt" name="save" value="sauv. quiz" type="submit"></li>
+                </ul>
+            </form>
+            <form th:if="${quiztoedit} != null" action="admin" class="alt" method="POST">
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        <input th:value="${quiztoedit}" name="editingquiz"  type="hidden">
+                        <input th:value="${quiztoedit}" name="namequiz" type="text" th:placeholder="${quiztoedit}">
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input class="alt" name="draft" value="enr. brouillon" type="submit" ></li>
+                    <li><input class="alt" name="save" value="sauv. quiz" type="submit"></li>
+                </ul>
+            </form>
+        </section>
+        <section>
+            <ul class="checklist-quiz">
+                <li th:each="quiz: ${quizzes}" th:classappend="${quiz.state} == 0 ? notvalid : valid">
+                    <a th:href="@{/index/quiz/{id}(id=${quiz.quiz_id})}" th:text="${quiz.title}" th:style="${quiz.state} == 0 ? 'color:red' : 'color:green'"></a>
+                    <form action="editquiz" method="post" >
+                        <input type="hidden" name="quiz_id" th:value="${quiz.quiz_id}" >
+                        <input type="image" src="/images/pencil.png" name="edit" alt="Edit" style="margin-left:20px;" >
+                    </form>
+                    <form action="deletequiz" method="post" >
+                        <input type="hidden" name="quiz_id" th:value="${quiz.quiz_id}" >
+                        <input type="image" src="/images/croix.png" name="delete" alt="Delete" style="margin-left:20px;" >
+                    </form>
+                    <form action="questions" method="post" >
+                        <input type="hidden" name="quizid" th:value="${quiz.quiz_id}" >
+                        <input type="image" src="/images/add.png" name="edit" alt="Add Question" style="margin-left:20px;" >
+                    </form>
+                </li>
+            </ul>
+            <p>("Crayon" pour modifier le titre, "Plus" pour ajouter des questions)</p>
+        </section>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Fer des quizzes. All rights (not) reserved. <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>. Design: <a href="mailto:kolthar.levilain@gmail.com">Kolthar</a>.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

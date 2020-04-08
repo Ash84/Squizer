@@ -4,7 +4,10 @@ This project was build on Ubuntu 18.04, during a professional training session.
 
 First run (detailed process with command line) : 
 
-Install mysql, and create the database 'Quizz'.
+
+Install default java jdk
+    sudo apt install defaul-jdk 
+Install mysql and create the database 'Quizz'.
     sudo apt install mysql-server
     sudo mysql -p
     (enter your passphrase)

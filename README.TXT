@@ -1,6 +1,6 @@
 This project is built with Maven. It uses Spring and Spring MVC as architecture. The database is mounted by hibernate, whose generation options are in application.properties.
 
-
+This project was build on Ubuntu 18.04, during a professional training session.
 
 First run (detailed process with command line) : 
 

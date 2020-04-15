@@ -34,7 +34,7 @@ or something else.
 You can authentify by default : 
 Name : Administrateur;
 Passphrase : Fv4xLRzMftz8SKRL;
-
+You can change these credentials in data.sql located in the ressources folder, entering an hashed password and its seed.
 
 
 

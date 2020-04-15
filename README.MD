@@ -70,7 +70,7 @@ System.setProperty("server.port", "80");
 
 or something else.
 
-You can authentify by default : 
+**You can authentify by default** : 
 
 	Name : Administrateur;
 

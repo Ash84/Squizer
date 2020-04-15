@@ -11,19 +11,22 @@ Install mysql and create the database 'Quizz'.
     sudo apt install mysql-server
     sudo mysql -p
     (enter your passphrase)
-    CREATE DATABASE QUIZZ;
+    CREATE DATABASE Quizz;
 Create user 'Admin', identified by 'Password'. You can also choose a username and a personalized password, but if so, you will also have to enter it in the application.properties file.
     CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'Password';
+    GRANT ALL PRIVILEGES ON Quizz.* TO 'Admin'@'localhost';
+Rename --Data.sql to data.sql to use default database with default Admin. If so, set in application.properties 
+spring.jpa.hibernate.ddl-auto=create
 
-Rename --Data.sql to data.sql
 Place yourself in src/main/java/a84/squizer folder
     ./mvnw spring-boot:run
 It is possible that the execution rights are not granted to the ./ folder, to solve this problem you can enter the next line :
     chmod +x ./mvnw
-You can rename data.sql to whatever then, so on reboot it will not erase your data.
+You can rename data.sql to whatever then, so on reboot it will not erase your data, and in application.properties :
+spring.jpa.hibernate.ddl-auto=none
 
 You can also change the port, in src/main/java/a84/squizer/Squizer.java, search for line 11 :
-		System.setProperty("server.port", "8085");
+		System.setProperty("server.port", "xxxx");
 and change it to :
 		System.setProperty("server.port", "80");
 or something else.

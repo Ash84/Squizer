@@ -43,8 +43,10 @@ Rename --Data.sql to data.sql to use default database with default Admin. If so,
 Place yourself in src/main/java/a84/squizer folder
 
 ```sh
-./mvnw spring-boot:run
+sudo ./mvnw spring-boot:run
 ```
+    (enter your passphrase)
+
 
 It is possible that the execution rights are not granted to the ./ folder, to solve this problem you can enter the next line :
 

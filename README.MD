@@ -11,7 +11,7 @@ __First run (detailed process with command line) :__
 Install default java jdk :
 
 ```sh
-sudo apt install defaul-jdk 
+sudo apt install default-jdk 
 ```
 
 Install mysql and create the database 'Quizz':
